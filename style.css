@@ -1,0 +1,215 @@
+/* New style: Digital Grimoire / Scroll */
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0d8;
+    --accent-red: #c04c50;
+    --accent-blue: #55aaff;
+    --accent-yellow: #f8c339;
+    --card-bg: #2b2b2b;
+    --border-color: #5d5d7e;
+}
+
+body {
+    font-family: 'Kaisei Tokumin', 'serif';
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.top-banner {
+    width: 100%;
+    height: 300px;
+    background-image: url('background-1.png');
+    /* --- CHANGES START HERE --- */
+    /* Adjust background-size to a percentage to show more of the image without cropping */
+    background-size: 150%; 
+    /* Adjust background-position to move the image and show the desired area */
+    background-position: center top; 
+    /* You can also try '50% 20%' or other values to fine-tune the position */
+    /* --- CHANGES END HERE --- */
+    border-bottom: 5px solid var(--accent-blue);
+    position: relative;
+    z-index: 1;
+}
+
+.header-container {
+    text-align: center;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+h1 {
+    font-family: 'Yuji Syuku', cursive;
+    font-size: 2.5em;
+    font-weight: normal;
+    color: var(--accent-yellow);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 0 0 10px 0;
+}
+
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.main-nav a.active {
+    color: var(--accent-yellow);
+    background-color: var(--accent-blue);
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.main-nav a:hover:not(.active) {
+    background-color: var(--accent-red);
+    border-color: var(--accent-yellow);
+    transform: translateY(-2px);
+}
+
+.routines-container {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.routine-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    transition: opacity 0.5s ease-out, transform 0.6s ease-out;
+    display: none;
+}
+
+.routine-card.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.routine-card .card-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+    transition-delay: 0.3s;
+}
+
+.routine-card.is-visible .card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.routine-card h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--accent-yellow);
+    border-bottom: 2px solid var(--accent-yellow);
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: rgba(50, 50, 50, 0.5);
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 3px solid var(--accent-red);
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    border-left-color: var(--accent-yellow);
+    transform: translateX(5px);
+}
+
+span {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
+.rosary-mysteries {
+    font-style: italic;
+    color: var(--text-color);
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+    .main-nav a {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+}
+
+
+/* NEW CSS FOR DEMON SLAYER SIDE EFFECTS */
+
+.side-effect-left, .side-effect-right {
+    position: fixed;
+    top: 0;
+    width: 10vw; /* Adjust width as needed */
+    height: 100vh;
+    z-index: 0; /* Place behind other content */
+    pointer-events: none; /* Allows clicks to pass through */
+    opacity: 0.7;
+}
+
+.side-effect-left {
+    left: 0;
+    /* Fire-like effect using a radial gradient animation */
+    background: radial-gradient(circle, rgba(255,100,0,0.5) 0%, rgba(255,0,0,0.2) 50%, rgba(0,0,0,0) 70%);
+    background-size: 200% 200%;
+    animation: fire-flicker 2s ease-in-out infinite alternate;
+}
+
+.side-effect-right {
+    right: 0;
+    /* Thunder-like effect using a pulsating box-shadow */
+    background: radial-gradient(circle, rgba(85,170,255,0.4) 0%, rgba(50,50,200,0.1) 50%, rgba(0,0,0,0) 70%);
+    animation: thunder-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Keyframes for fire animation */
+@keyframes fire-flicker {
+    0% { transform: scaleY(1) rotate(0deg); opacity: 0.7; }
+    50% { transform: scaleY(1.1) rotate(1deg); opacity: 0.8; }
+    100% { transform: scaleY(1) rotate(-1deg); opacity: 0.7; }
+}
+
+/* Keyframes for thunder animation */
+@keyframes thunder-pulse {
+    0% { transform: scaleX(1) scaleY(1); opacity: 0.7; filter: blur(5px); }
+    25% { transform: scaleX(1.1) scaleY(0.95); opacity: 0.9; filter: blur(2px); }
+    50% { transform: scaleX(1) scaleY(1); opacity: 0.7; filter: blur(5px); }
+    75% { transform: scaleX(0.9) scaleY(1.05); opacity: 0.9; filter: blur(2px); }
+    100% { transform: scaleX(1) scaleY(1); opacity: 0.7; filter: blur(5px); }
+}
